@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous">
+<head>
+  <meta charset="UTF-8">
+  <title>My Offers</title>
+</head>
+<body>
+<div class="container my-2">
+  <h2 class="h2">Verify the applications</h2>
+  <table border="1" class = "table table-striped table-responsive-md">
+    <thead>
+    <tr>
+      <th>Offer</th>
+      <th>Candidate</th> <!-- name/surname/profile + link to his resume -->
+      <th>Accept/reject</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <!--    <tr th:if="${offers.empty}">-->
+    <!--      <td colspan="3">Aucun employée en base de données</td>-->
+    <!--    </tr>-->
+    <tr th:each="employee: ${applications}">
+      <td> <ul>
+        <li><span th:text="${employee.offer.profile}"> offer </span></li>
+        <li><span th:text="${employee.offer.description}"> offer </span></li>
+        <li><span th:text="${employee.offer.experience}"> offer </span></li>
+      </ul></td>
+
+      <td> <ul>
+        <li><span th:text="${employee.candidate.name +' '+employee.candidate.surname}"> offer </span></li>
+        <li><span th:text="${employee.candidate.email}"> offer </span></li>
+        <li><span th:text="${employee.candidate.phoneNumber}"> offer </span></li>
+        <li><span th:text="${employee.similarity}"> offer </span></li>
+        <li><span th:text="${employee.missingSkills}"> offer </span></li>
+      </ul></td>
+
+      <td>
+        <a th:href="@{/application/accept/{id}(id=${employee.id})}" class="btn btn-primary">Accept</a>
+        <a th:href="@{/application/reject/{id}(id=${employee.id})}" class="btn btn-danger">Reject</a> <br>
+
+        <th:block th:if="${employee.confirmation == null}">
+          <p style="color: blue;"><b>This application has not been processed</b></p>
+        </th:block>
+
+        <th:block th:if="${employee.confirmation}">
+          <p style="color: green;"><b> You have ACCEPTED this application </b></p>
+          <br>
+          <th:block th:if="${employee.dateInterview != null}">
+            <ul>
+              <li>Date Interview : <span th:text="${employee.dateInterview}"></span> </li>
+              <li>Time Interview : <span th:text="${employee.timeInterview}"></span> </li>
+            </ul>
+          </th:block>
+          <th:block th:if="${employee.dateInterview == null}">
+          <b>Set DATE and TIME of interview :</b>
+          <br>
+          <form action="#" th:action="@{/application/accept/sendEmail/{id}(id=${employee.id})}"  method="get">
+          <input type="date" placeholder="dd/mm/yyyy" id="date" name="date1">
+          <input type="time" name ="time1">
+          <button type="submit" class="btn btn-primary">Send Email</button>
+          </form>
+          </th:block>
+        </th:block>
+
+        <th:block th:if="${employee.confirmation == false}">
+          <p style="color: red;"><b> You have REJECTED this application </b></p>
+        </th:block>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</body>
+
+</html>

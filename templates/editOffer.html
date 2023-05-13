@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add Offer</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Themesdesign" />
+
+  <link rel="shortcut icon" href="images/favicon.ico">
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
+
+  <!--Material Icon -->
+  <link rel="stylesheet" type="text/css" href="../../css/materialdesignicons.min.css" />
+
+  <link rel="stylesheet" type="text/css" href="../../css/fontawesome.css" />
+
+  <!-- selectize css -->
+  <link rel="stylesheet" type="text/css" href="../../css/selectize.css" />
+
+  <!--Slider-->
+  <link rel="stylesheet" href="../../css/owl.carousel.css" />
+  <link rel="stylesheet" href="../../css/owl.theme.css" />
+  <link rel="stylesheet" href="../../css/owl.transitions.css" />
+
+  <!-- Custom  Css -->
+  <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+
+</head>
+
+<body>
+<!-- Loader -->
+<div id="preloader">
+  <div id="status">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </div>
+</div>
+<!-- Loader -->
+
+<!-- Navigation Bar-->
+<header id="topnav" class="defaultscroll scroll-active">
+  <!-- Menu Start -->
+  <div class="container">
+    <!-- Logo container-->
+    <div>
+      <a href="mySpaceRecruiter.html" class="logo">
+        <img src="../../images/light3.png" alt="" class="logo-light"  height="60"  width="230" />
+        <img src="../../images/dark3.png" alt="" class="logo-dark" height="60"  width="230" />
+      </a>
+    </div>
+    <div class="buy-button">
+      <a th:href = "@{/offers/showAddForm}" class="btn btn-primary" style="background-color: rgb(245, 209, 93);"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
+    </div><!--end login button-->
+
+    <!-- End Logo container-->
+    <div class="menu-extras">
+      <div class="menu-item">
+        <!-- Mobile menu toggle-->
+        <a class="navbar-toggle">
+          <div class="lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </a>
+        <!-- End mobile menu toggle-->
+      </div>
+    </div>
+
+    <div id="navigation">
+      <!-- Navigation Menu-->
+      <ul class="navigation-menu">
+        <li><a th:href = "@{/offers}">Home</a></li>
+        <li><a th:href = "@{/recruiters/checkApplications}" >Applications</a></li>
+        <li><a th:href = "@{/recruiters/checkInterviews}">Interviews</a></li>
+
+        <li class="has-submenu">
+          <a href="javascript:void(0)">Search</a><span class="menu-arrow"></span>
+          <ul class="submenu">
+            <li><a th:href="@{/allresumes}">Candidates Listing</a></li>
+            <li><a th:href="@{/alljobs}">Offers Listing</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="javascript:void(0)">My profile </a><span class="menu-arrow"></span>
+          <ul class="submenu">
+            <li><a th:href="@{/myProfile}">My profile</a></li>
+            <li><a th:href="@{/editAccount}" >Account settings</a></li>
+            <li><a th:href = "@{/delete}">Delete account</a></li>
+            <li><a th:href = "@{/logout}">Sign out </a></li>
+          </ul>
+        </li>
+      </ul><!--end navigation menu-->
+    </div><!--end navigation-->
+  </div><!--end container-->
+  <!--end end-->
+</header><!--end header-->
+<!-- Navbar End -->
+
+<!-- Start home -->
+<section class="bg-half page-next-level" style="background-color: aquamarine;">
+  <div class="bg-overlay"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="text-center text-white">
+          <h4 class="text-uppercase title mb-4">Edit a post </h4>
+          <ul class="page-next d-inline-block mb-0">
+            <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
+            <li>
+              <span class="text-uppercase text-white font-weight-bold">Edit post</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end home -->
+
+<!-- POST A JOB START -->
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="rounded shadow bg-white p-4">
+          <div class="custom-form">
+            <div id="message3"></div>
+            <form action="#" th:action="@{/offers/create}" th:object="${offers}" method="POST" name="contact-form" id="contact-form3">
+
+              <h4 class="text-dark mb-3">Edit a post :</h4>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group app-label mt-2">
+                    <label class="text-muted">Job Title</label>
+                    <input type="hidden" th:field="*{idOffer}" />
+                    <input th:field="*{profile}" id="profile" type="text" class="form-control resume" placeholder="Profile">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group app-label mt-2">
+                    <label class="text-muted">Company Name</label>
+                    <input th:field="*{companyName}" id="name" type="text" class="form-control resume" placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group app-label mt-2">
+                    <label class="text-muted">Location</label>
+                    <input th:field="*{location}" id="city" type="text" class="form-control resume" placeholder="">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group app-label mt-2">
+                    <label class="text-muted">Expiring Date</label>
+                    <input th:field="*{dateOffer}" id="maxDate" type="date" class="form-control resume" placeholder="">
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group app-label mt-2">
+                    <label class="text-muted">Year of Experience</label>
+                    <input th:field="*{experience}" id="exp" type="text" class="form-control resume" placeholder="exp: +2 years">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group app-label mt-2">
+                    <label class="text-muted">Salary</label>
+                    <input th:field="*{salary}" id="minimum-salary" type="text" class="form-control resume" placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group app-label mt-2">
+                    <label class="text-muted">Skills</label>
+                    <input th:field="*{skills}" id="company-name" type="text" class="form-control resume" placeholder="skill_1 , skill_2, ...">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group app-label mt-2">
+                    <label class="text-muted">Job Description</label>
+                    <textarea  th:field="*{description}" id="description" rows="6" class="form-control resume" placeholder=""></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                      <div class="input-group mt-2 mb-2">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                          <label class="custom-file-label rounded"><i class="mdi mdi-cloud-upload mr-1"></i> Upload Files</label>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="list-inline-item">
+                      <h6 class="text-muted mb-0">Upload Images Or Documents.</h6>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12 mt-2">
+                  <button type="submit" class="btn btn-primary"style="background-color: rgb(245, 209, 93);">Update offer</button>
+<!--                  <a type="submit" class="btn btn-primary"style="background-color: rgb(245, 209, 93);">Update Offer</a>-->
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- POST A JOB END -->
+
+<!-- footer start -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
+        <a href="javascript:void(0)"><img src="images/light3.png" height="60"  width="230" alt=""></a>
+      </div>
+      <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+        <p class="mt-4">Our e-recruitment platform provides a user-friendly and efficient solution for both employers and job seekers, simplifying the recruitment process and facilitating successful matches between talented candidates and top-notch companies. </p>
+
+      </div>
+      <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+        <p class="text-white mb-4 footer-list-title">Our Email :</p>
+        <ul class="list-unstyled footer-list">
+          <li><a href="#" class="text-foot">jobMatchNow.platform@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+        <p class="text-white mb-4 footer-list-title f-17">Contacts</p>
+        <ul class="social-icon social list-inline mb-0">
+          <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+          <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+          <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
+          <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-google"></i></a></li>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+</footer>
+<!-- footer end -->
+
+<!-- javascript -->
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script src="../../js/jquery.easing.min.js"></script>
+<script src="../../js/plugins.js"></script>
+
+<!-- selectize js -->
+<script src="../../js/selectize.min.js"></script>
+
+<script src="../../js/jquery.nice-select.min.js"></script>
+
+<script src="../../js/app.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

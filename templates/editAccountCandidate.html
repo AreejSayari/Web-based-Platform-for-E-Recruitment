@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <title>Update account</title>
+</head>
+<body>
+<div class="container">
+    <h2>Update my account</h2>
+    <hr>
+
+
+    <form action="#" th:action="@{/candidates/create}" th:object="${currentUserC}" method="POST">
+        <!--  <form action="#" th:action="@{/recruiters/create}" th:object="${recruiter}" method="POST">-->
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{id}" />
+
+        Email : <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
+
+        Password : <input type="password" th:field="*{password}" class="form-control mb-4 col-4">
+
+        Name : <input type="text" th:field="*{name}" class="form-control mb-4 col-4">
+
+        Surname : <input type="text" th:field="*{surname}" class="form-control mb-4 col-4">
+
+        Phone Number :<input type="text" th:field="*{phoneNumber}" class="form-control mb-4 col-4">
+
+
+        <button type="submit" class="btn btn-info col-2"> Update Candidate</button>
+    </form>
+
+    <hr>
+
+<!--    <a th:href="@{/}"> Back to Candidate List</a>-->
+</div>
+</body>
